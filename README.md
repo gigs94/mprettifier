@@ -1,4 +1,4 @@
-# mprettifier
+# mpretty
 example prettifier code for fun and profit
 
 # description
