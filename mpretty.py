@@ -22,6 +22,23 @@ class mpretty:
         except ValueError:
             return float(s)
 
+    def truncate(self, f, n):
+        '''Truncates/pads a float f to n decimal places without rounding'''
+        s = '{}'.format(f)
+        if 'e' in s or 'E' in s:
+            return '{0:.{1}f}'.format(f, n)
+        i, p, d = s.partition('.')
+        return '.'.join([i, (d+'0'*n)[:n]])
+
+    def _trim(self, num):
+        """cut num to 1 sig digit,
+           and if that digit is 0,
+           cut that and the decimal too"""
+        s = self.truncate(num,1)
+        if s[-1:] == '0':
+            s = s[:-2]
+        return(s)
+        
     def _prettify(self):
         """convert number to pretty form"""
         modifier = ""
@@ -42,5 +59,5 @@ class mpretty:
             modifier = "T"
             divider = 1000000000000
 
-        return str(self.number/divider)+modifier
+        return self._trim(str(self.number/divider))+modifier
 
