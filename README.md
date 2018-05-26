@@ -29,9 +29,10 @@ output: 1.1B
 Documentation for the project is in the ./docs directory
 
 ## Running tests
-The py.test suite is built into python3 so just run:
-
-`py.test`
+```
+python3 -m pytest
+```
+Note: Depending on your distribution, you might have to install pytest: `pip install pytest`
 
 ## Build & Install
 ```
