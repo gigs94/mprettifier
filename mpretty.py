@@ -4,8 +4,8 @@ class mpretty:
 
     def __init__(self, number):
         """Return a mprettifier object and set number to number"""
-        self.number = _num(number)
-        self.prettier_number = _prettify()
+        self.number = self._num(number)
+        self.prettier_number = self._prettify()
 
     def __repr__(self):
         return self.prettier_number
@@ -16,7 +16,7 @@ class mpretty:
     def pretty_number(self):
         return self.prettier_number 
 
-    def _num(s):
+    def _num(self,s):
         try:
             return int(s)
         except ValueError:
