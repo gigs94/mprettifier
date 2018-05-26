@@ -31,6 +31,12 @@ output: 1.1B
 # Documentation
 Documentation for the project is in the ./docs directory
 
+## Running on command line
+```
+./mpretty 1123456789
+1.1B
+```
+
 ## Running tests
 ```
 python3 -m pytest

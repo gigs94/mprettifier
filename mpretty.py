@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 class mpretty:
     """turn numbers into easy to read abbreviations"""
@@ -43,6 +44,7 @@ class mpretty:
         """convert number to pretty form"""
         modifier = ""
         divider = 1
+        # consider modularizing this if it gets any bigger
         if self.number < 1000000:
             # no changes
             pass
@@ -61,3 +63,18 @@ class mpretty:
 
         return self._trim(str(self.number/divider))+modifier
 
+
+if __name__ == '__main__':
+    import argparse
+    
+    def parse_command_line():
+        parser = argparse.ArgumentParser(
+            description='Prettifier for numbers')
+        parser.add_argument(
+            'number', help='number to parse')
+        args = parser.parse_args()
+        return args
+
+    args = parse_command_line()
+
+    print(mpretty(args.number))
