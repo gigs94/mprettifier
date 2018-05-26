@@ -15,7 +15,8 @@ input: 532
 output: 532
 
 input: 1123456789
-output: 1.1B```
+output: 1.1B
+```
 
 
 # Documentation
