@@ -15,6 +15,14 @@ input: 1123456789
 output: 1.1B
 ```
 
+## Code Examples
+
+```>>> from mpretty import mpretty
+>>> x = 1345135345
+>>> print(mpretty(x))
+1.3B
+```
+
 # Documentation
 Documentation for the project is in the ./docs directory
 
@@ -22,11 +30,3 @@ Documentation for the project is in the ./docs directory
 The py.test suite is built into python3 so just run:
 
 `py.test`
-
-# Code Examples
-
-```>>> from mpretty import mpretty
->>> x = 1345135345
->>> print(mpretty(x))
-1.3B
-```
