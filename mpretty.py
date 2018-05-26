@@ -35,7 +35,7 @@ class mpretty:
             divider = 1000000
         elif self.number < 1000000000000:
             # billions changes
-            modifier = "M"
+            modifier = "B"
             divider = 1000000000
         else:
             # trillions changes
