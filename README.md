@@ -23,6 +23,9 @@ output: 1.1B
 >>> x = 1345135345
 >>> print(mpretty(x))
 1.3B
+>>> x = 1.234e8
+>>> print(mpretty(x))
+123.4M
 ```
 
 # Documentation
