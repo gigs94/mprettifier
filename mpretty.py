@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 
+
 class mpretty:
     """turn numbers into easy to read abbreviations"""
 
     def __init__(self, number):
         """Return a mprettifier object and set number to number"""
-        self.number = self._num(number)
+        self.number = number
+        self.mod_table = [
+            { "length":6, 'modifier':'M'},
+            { "length":9, 'modifier':'B'},
+            { "length":12, 'modifier':'T'},
+          ]
         self.prettier_number = self._prettify()
 
     def __repr__(self):
@@ -17,19 +23,23 @@ class mpretty:
     def pretty_number(self):
         return self.prettier_number 
 
-    def _num(self,s):
-        try:
-            return int(s)
-        except ValueError:
-            return float(s)
-
     def truncate(self, f, n):
         '''Truncates/pads a float f to n decimal places without rounding'''
-        s = '{}'.format(f)
+        #s = '{}'.format(f)
         if 'e' in s or 'E' in s:
             return '{0:.{1}f}'.format(f, n)
         i, p, d = s.partition('.')
         return '.'.join([i, (d+'0'*n)[:n]])
+
+    def _find_bucket(self, s):
+        max_length = 0
+        modifier=''
+        lens = len(s)
+        for i in self.mod_table:
+            if lens >= i['length'] and i['length'] > max_length:
+                modifier = i['modifier']
+                max_length = i['length']
+        return modifier, max_length
 
     def _trim(self, num):
         """cut num to 1 sig digit,
@@ -40,28 +50,31 @@ class mpretty:
             s = s[:-2]
         return(s)
         
+    def _split_num(self):
+        s = '{}'.format(self.number)
+        return s.partition('.')
+
+    def _shift_decimal(self, num, lens):
+        num2 = num[:-lens]
+        decimal = num[-lens:-(lens-1)]
+        return (num2, decimal)
+
     def _prettify(self):
         """convert number to pretty form"""
-        modifier = ""
-        divider = 1
-        # consider modularizing this if it gets any bigger
-        if self.number < 1000000:
-            # no changes
-            pass
-        elif self.number < 1000000000:
-            # millions changes
-            modifier = "M"
-            divider = 1000000
-        elif self.number < 1000000000000:
-            # billions changes
-            modifier = "B"
-            divider = 1000000000
+        (s,_,d) = self._split_num()
+        (mod,lens) = self._find_bucket(s)
+        if lens != 0:
+            (num,decimal) = self._shift_decimal(s,lens)
         else:
-            # trillions changes
-            modifier = "T"
-            divider = 1000000000000
+            num = s
+            decimal = d[:1]
 
-        return self._trim(str(self.number/divider))+modifier
+        if decimal != "0" and decimal != '':
+            number = num+'.'+decimal
+        else:
+            number = num
+
+        return number+mod
 
 
 if __name__ == '__main__':
