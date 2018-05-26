@@ -17,3 +17,6 @@ The customer has asked to display numbers in a more elegant way.   They have ask
 # Questions to the Customer
 * Should numbers really be rounded?
 * Should floats less than 1M keep all significant digits?
+* Should we keep the # of sig digits the same?   e.g.   we are only keeping 1-2 when the number is near a boundary (1,000,000 => 1M; 14000000 => 1.4M) but we are keeping up to 4 when it's near a second boundary (or 6 when it's under 1M),  (123,400,000 => 123.4M;  should this be 120M?)
+* Should the input be able to take differnet forms?   1,000,000, 1M, 1000000, 1.0e6(actually this works because python accepts this)
+* Should we be able to 'unconvert' from mpretty to int?
