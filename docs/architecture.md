@@ -20,4 +20,8 @@ This _could_ all be done with strings... and we could have just a simple table t
 
 # Evaluation
 ## truncate
-The truncate discussions on stack overflow (https://stackoverflow.com/questions/783897/truncating-floats-in-python) brought out the fact that many formatters automatically round, but there is some control with the rounding methods (rounding=ROUND_DOWN).  This truncate module actually just uses the string form of the number and just 
+The truncate discussions on stack overflow (https://stackoverflow.com/questions/783897/truncating-floats-in-python) brought out the fact that many formatters automatically round, but there is some control with the rounding methods (rounding=ROUND_DOWN).  This truncate module actually just uses the string form of the number and just makes the design a little cleaner.
+
+
+# Decision
+First, I evaluated the integer solution, but then decided to switch to the string version for number truncation.   During the switch, I refactored some of the code so that we could add buckets easily without having to code... it's more of a configuration change (albiet, it's in the code right now). 
